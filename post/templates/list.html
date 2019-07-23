@@ -1,0 +1,19 @@
+
+
+{% extends 'base.html' %}
+
+{% block title %}
+List Page
+{% endblock %}
+
+{% block main-body %}
+{% for obj in object_list %}
+  <div class="card text-center" style="width: 100%; max-height: 100%; padding-left: 10%; padding-right:10%">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h6>{{obj.title}}</h6>
+      <p class="card-text">{{obj.description}}</p>
+    </div>
+  </div>
+    {% endfor %}
+{% endblock %}
