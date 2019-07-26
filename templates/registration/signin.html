@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block title %}
+Log/Sign in
+{% endblock %}
+
+{% block main-body %}
+<h2>Sign up</h2>
+ <form method="post" novalidate>
+      {% csrf_token %}
+      {% bootstrap_form form show_help=False %}
+    <button type="submit" class="btn btn-primary">Sign up</button>
+  </form>
+
+
+  <div class="dropdown-divider"></div>
+  already have an account?<a  href="{% url 'login'%}"> Sign in</a>
+  <br/>
+  <a href="#">Forgot password?</a>
+</div>
+{% endblock %}

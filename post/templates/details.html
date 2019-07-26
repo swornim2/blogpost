@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}{{obj.title}} Details{% endblock %}
+  {% block main-body %}
+  <br />
+  <br />
+  <div class="card" style="width: 70rem; margin: 0 auto;">
+    {% if obj.img %}<img src="{{obj.image}}" class="card-img-top" alt="...">
+  {% endif %}
+    <div class="card-body">
+        <h1 class="display-4">{{obj.title}}</h1>
+      <p class="lead">{{obj.description}}</p>
+      <ul class="list-group list-group-flush">
+      <li class="list-group-item text-right">{{obj.creator}}<br /><small class="text-muted">Published on: {{obj.created_date}}</small></li>
+      <li class="list-group-item text-right">
+
+        </li>
+    </ul>
+
+    </div>
+
+  </div>
+  {% if user == obj.creator %}
+<a class="btn btn-outline-primary mt-3 mb-1 btn-block " href="{% url 'edit' obj.pk %}" role="button " data-toggle="tooltip"  data-placement="right" title="Edit Post">Edit</a>
+{% endif %}
+    {% endblock %}
