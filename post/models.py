@@ -17,7 +17,6 @@ class Post(BaseModel):
     description = models.TextField(help_text="Description")
     creator = models.ForeignKey(User, on_delete=models.PROTECT)
     image = models.ImageField(upload_to='post/images', null=True, blank=True)
-    total_comments = models.IntegerField(default=0)
     type = models.CharField(
         max_length=10, choices=TYPE_CHOICES, default='public')
     is_published = models.BooleanField(null=False, blank=False, default=False)
