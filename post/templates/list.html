@@ -6,33 +6,41 @@ List Page
 
 {% block main-body %}
 <style>
-.m1{
-  margin-bottom: 20px;
-}
+
 </style>
 {% if user.is_authenticated %}
 <div class="text-right">
-  <a class="btn btn-success mb-2" href="{% url 'form' %}">Create</a>
+  <div class='create'><a class="btn btn-success mb-2" href="{% url 'form' %}">Create</a></div>
+  <center><form class="form-inline" method="GET">
+      <input class="form-control mr-sm-2" type="text" name="q" placeholder="{{q}}" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form></centre>
 </div>
 {% endif %}
-<div class="container">
+<div class="container dd">
   <div class="row">
   {% for obj in object_list %}
 
     <div class="col-sm-4">
-    <a href="#" class="text-decoration-none ">
+  <div class="item">
+    <a href="{% url 'detail' obj.pk %}" class="text-decoration-none ">
 
-    <div class="card m1 ex2" style="width: 20rem;">
+    <div class="card m1 ex2" style="width: 20rem;" id="pp">
+  
     {% if obj.image %}<img src="{{obj.image.url}}" class="card-img-top" alt="...">{% endif %}
     <div class="card-body">
-    <h5 class="card-title">{{obj.title}}</h5>
     </a>
+    <h5 class="card-title">{{obj.title}}</h5>
+    <small class="text-success mr-auto">{{obj.creator}}</small>
     <p class="card-text">{{obj.description}}</p>
     <a href="{% url 'detail' obj.pk %}" class="btn btn-primary">read more</a>
   </div>
   
 </div>
     </div>
+  </div>
+  {% empty %}
+  FILE NOT FOUND
   {% endfor %}
   </div>
 </div>

@@ -5,11 +5,14 @@
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+
   <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <link rel="stylesheet" type="text/css" href="theme.css">
   <title>
   {% block title %}
   Blog Title
@@ -49,7 +52,7 @@
   {% endblock %}
   {% block footer %}
   {% endblock %}
-  </div>
+</div>
 
   {% endtimezone %}
   <!-- Optional JavaScript -->
@@ -57,6 +60,9 @@
   <script src="{% static 'jquery-3.3.1.slim.js' %}"></script>
   <script src="{% static 'popper.js' %}"></script>
   <script src="{% static 'bootstrap.js' %}"></script>
+
+  {% comment 'modal code' %}
+  {% endcomment %}
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

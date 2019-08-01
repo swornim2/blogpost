@@ -1,25 +1,48 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
 {% block title %}{{obj.title}} Details{% endblock %}
   {% block main-body %}
   <br />
   <br />
-  <div class="card" style="width: 70rem; margin: 0 auto;">
+  {% if user == obj.creator %}
+<a class="btn btn-outline-success place" href="{% url 'edit' obj.pk %}" title="Edit Post">Edit</a>
+{% endif %}
+  <div class="card">
     {% if obj.img %}<img src="{{obj.image}}" class="card-img-top" alt="...">
   {% endif %}
     <div class="card-body">
-        <h1 class="display-4">{{obj.title}}</h1>
+  <center><h1 class="display-4">{{obj.title}}</h1></center>
+    {% if obj.image %}<img src="{{obj.image.url}}" class="card-img-top" alt="...">{% endif %}
       <p class="lead">{{obj.description}}</p>
       <ul class="list-group list-group-flush">
       <li class="list-group-item text-right">{{obj.creator}}<br /><small class="text-muted">Published on: {{obj.created_date}}</small></li>
-      <li class="list-group-item text-right">
-
-        </li>
+      <li class="list-group-item text-right"></li>
     </ul>
+    <form method="post" novalidate >
+    {% csrf_token %}
+    {% if not user.is_authenticated %}
+    {% bootstrap_field form.name %}
+    {% bootstrap_field form.email %}
+    {% endif %}
+    {% bootstrap_field form.comment %}
+    <button type="submit" class="save btn btn-outline-primary rounded-pill">submit</button>
+</form>
 
+    <h3>comments: {{total_comments}}</h3>
+<div class="container">
+{% for obj in comments %}
+  <div class="dialogbox">
+    <div class="bp">
+      
+      <span class="tip tip-up"></span>
+      <div class="message">
+        <span>{{obj.comment}}</span>
+        <button class="btn btn-link text-danger bt my-2 my-sm-0">Delete</button>
+      </div>
+    </div>
+  </div>
+{% endfor %}
     </div>
 
   </div>
-  {% if user == obj.creator %}
-<a class="btn btn-outline-primary mt-3 mb-1 btn-block " href="{% url 'edit' obj.pk %}" role="button " data-toggle="tooltip"  data-placement="right" title="Edit Post">Edit</a>
-{% endif %}
-    {% endblock %}
+{% endblock %}
