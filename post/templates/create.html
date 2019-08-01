@@ -7,7 +7,7 @@ Create Page
 {% block main-body %}
 
 
-  <form method="POST" novalidate>
+  <form method="POST" enctype='multipart/form-data' novalidate>
       {% csrf_token %}
       {% bootstrap_form form %}
       <input type="submit" value="create">
