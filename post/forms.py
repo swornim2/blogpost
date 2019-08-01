@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 
-from .models import Post
+from .models import Post, Comment
 
 
 class PostForm(forms.ModelForm):
@@ -13,7 +13,16 @@ class PostForm(forms.ModelForm):
             "creator",
             "description",
             "image",
-            "total_comments",
             "is_published",
         )
 
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment 
+        fields = (
+            "name",
+            "email",
+            "comment"
+
+        )
+  
